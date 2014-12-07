@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<h:head>
+		<title><ui:insert name="Lelak Test Gilson">JSF</ui:insert></title>
+	</h:head>
+	<h:body>
+		<p:tabView>
+			<p:tab title="Cadastro de Usuários">
+				<h:form id="formUser">
+					<p:panelGrid columns="2" layout="grid">
+						<p:outputLabel for="name" value="Nome:" />
+						<p:inputText id="name" />
+			
+						<p:outputLabel for="lastname" value="Sobrenome:"  />
+						<p:inputText id="lastname" />
+			
+						<p:outputLabel for="mail" value="E-mail:" />
+						<p:inputText id="mail" />
+			
+						<p:outputLabel for="phone" value="Telefone:"  />
+						<p:inputText id="phone" />
+					</p:panelGrid>
+				</h:form>
+			</p:tab>
+			<p:tab title="Cadastro de Instrumentos">
+				<h:form id="formInstrument">
+					<p:panelGrid columns="2" layout="grid">
+						<p:outputLabel for="name" value="Nome:" />
+						<p:inputText id="name" />
+			
+						<p:outputLabel for="image" value="Imagem:"  />
+						<p:fileUpload id="image" value="#{fileUploadView.file}" mode="simple" skinSimple="true"
+						allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+			
+						<p:outputLabel for="instrumentUser" value="Responsável pelo instrumento:" />
+						<p:selectOneMenu id="instrumentUser" value="#{dropdownView.country}" style="width:150px">
+			                <p:ajax listener="#{dropdownView.onCountryChange}" />
+			                <f:selectItem itemLabel="Selecione um usuário" itemValue="" noSelectionOption="true" />
+			                <f:selectItems value="#{dropdownView.countries}" />
+			            </p:selectOneMenu>
+					</p:panelGrid>
+				</h:form>
+			</p:tab>
+		</p:tabView>
+	</h:body>
+</html>
