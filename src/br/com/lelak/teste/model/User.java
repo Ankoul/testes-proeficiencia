@@ -2,27 +2,43 @@ package br.com.lelak.teste.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 import br.com.lelak.teste.exception.CloneNotSupportedRuntimeException;
 
-
+@Entity
 public class User implements Cloneable, Serializable {
 
 	private static final long serialVersionUID = -5430366449139440985L;
-	private int id;
+	
+	@Id
+	@GeneratedValue
+	private Long id;
+	
+	@Column(length = 50)
 	private String name;
+	
+	@Column(length = 50)
 	private String lastName;
+	
+	@Column(length = 50)
 	private String email;
+	
+	@Column(length = 14)
 	private String phone;
 
 	public User() {
-		id = 0;
+		id = 0l;
 		name = "";
 		lastName = "";
 		email = "";
 		phone = "";
 	}
 
-	public User(int id, String name, String lastName, String mail, String phone) {
+	public User(Long id, String name, String lastName, String mail, String phone) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -35,11 +51,11 @@ public class User implements Cloneable, Serializable {
 		this.name = name;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

@@ -16,8 +16,8 @@ public class InstrumentController {
 	
 	public List<Instrument> getList(){
 		List<Instrument> instruments = new ArrayList<Instrument>();
-		instruments.add(new Instrument(1, "view/image/1.jpg", "instrumento1", new User("usuario1")));
-		instruments.add(new Instrument(2, "view/image/2.jpg", "instrumento2", new User("usuario2")));
+		instruments.add(new Instrument(1l, "view/image/1.jpg", "instrumento1", new User("usuario1")));
+		instruments.add(new Instrument(2l, "view/image/2.jpg", "instrumento2", new User("usuario2")));
 		return instruments;
 	}
 	
