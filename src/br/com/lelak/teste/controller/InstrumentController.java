@@ -23,6 +23,7 @@ public class InstrumentController {
 	
 	public void toSave(InstrumentMB instrument){
 		System.out.println("salvando "+instrument.getName());
+		instrument.reset();
 	}
 
 }

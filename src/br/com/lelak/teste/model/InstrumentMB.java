@@ -9,6 +9,7 @@ import org.primefaces.model.UploadedFile;
 @ViewScoped
 public class InstrumentMB  extends Instrument {
 
+	private static final long serialVersionUID = -5283350390209830165L;
 	private UploadedFile file;
 
 	public UploadedFile getFile() {
@@ -17,6 +18,12 @@ public class InstrumentMB  extends Instrument {
 
 	public void setFile(UploadedFile file) {
 		this.file = file;
+	}
+	
+	public void reset(){
+		setName("");
+		setFile(null);
+		setUser(null);
 	}
 
 }

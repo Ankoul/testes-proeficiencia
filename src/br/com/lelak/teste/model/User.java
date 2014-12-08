@@ -1,9 +1,13 @@
 package br.com.lelak.teste.model;
 
+import java.io.Serializable;
+
 import br.com.lelak.teste.exception.CloneNotSupportedRuntimeException;
 
 
-public class User implements Cloneable {
+public class User implements Cloneable, Serializable {
+
+	private static final long serialVersionUID = -5430366449139440985L;
 	private int id;
 	private String name;
 	private String lastName;

@@ -7,4 +7,6 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class UserMB extends User {
 
+	private static final long serialVersionUID = -1763998954142024235L;
+
 }

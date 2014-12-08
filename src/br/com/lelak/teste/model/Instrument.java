@@ -1,7 +1,11 @@
 package br.com.lelak.teste.model;
 
+import java.io.Serializable;
 
-public class Instrument {
+
+public class Instrument implements Serializable{
+
+	private static final long serialVersionUID = 7582414649100351188L;
 	private Integer id;
 	private String image;
 	private String name;
