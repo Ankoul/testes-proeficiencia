@@ -10,9 +10,12 @@
 		<title>Lelak Test Gilson</title>
 	</h:head>
 	<h:body>
-		<p:tabView>
+		<p:tabView id="tabView">
 			<p:tab title="Cadastro de Usuários">
-				<ui:include src="view/pageFragment/formUser.xhtml" />
+				<ui:include src="view/pageFragment/formUserTemplate.xhtml">
+					<ui:param name="formId" value="formUser" />
+					<ui:param name="btnSubmitUserFilename" value="../common/btnSaveUser.xhtml" />
+				</ui:include>
 				<ui:include src="view/pageFragment/dataTableUsers.xhtml" />
 			</p:tab>
 			<p:tab title="Cadastro de Instrumentos">

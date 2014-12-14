@@ -1,14 +1,21 @@
 package br.com.lelak.teste.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import br.com.lelak.teste.exception.CloneNotSupportedRuntimeException;
 
+@ManagedBean
+@ViewScoped
 @Entity
 public class User implements Cloneable, Serializable {
 
@@ -29,13 +36,11 @@ public class User implements Cloneable, Serializable {
 	
 	@Column(length = 14)
 	private String phone;
-
+	
+	@OneToMany(cascade = CascadeType.REMOVE)
+	private List<Instrument> instruments;
+	
 	public User() {
-		id = 0l;
-		name = "";
-		lastName = "";
-		email = "";
-		phone = "";
 	}
 
 	public User(Long id, String name, String lastName, String mail, String phone) {
@@ -91,6 +96,14 @@ public class User implements Cloneable, Serializable {
 		this.phone = phone;
 	}
 
+	public List<Instrument> getInstruments() {
+		return instruments;
+	}
+
+	public void setInstruments(List<Instrument> instruments) {
+		this.instruments = instruments;
+	}
+
 	@Override
 	public String toString() {
 		return name;
@@ -103,6 +116,23 @@ public class User implements Cloneable, Serializable {
 		} catch (CloneNotSupportedException e) {
 			throw new CloneNotSupportedRuntimeException();
 		}
+	}
+	
+	public void clone(User user){
+		this.id = user.id;
+		this.name = user.name;
+		this.lastName = user.lastName;
+		this.email = user.email;
+		this.phone = user.phone;
+	}
+	
+	public void reset(){
+		id = null;
+		name = "";
+		lastName = "";
+		email = "";
+		phone = "";
+		instruments = null;
 	}
 
 }
