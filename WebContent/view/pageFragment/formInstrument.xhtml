@@ -11,7 +11,8 @@
 			<p:inputText id="name" value="#{instrumentMB.name}"/>
 
 			<p:outputLabel for="instrumentUser" value="Responsável pelo instrumento:" />
-			<p:selectOneMenu id="instrumentUser" value="#{instrumentMB.user}" style="width:218px">
+			<p:selectOneMenu id="instrumentUser" value="#{instrumentMB.user}" style="width:218px" converter="EntityConverter">
+				<p:ajax event="change" listener="#{instrumentMB.userChangeHandler}" />
                 <f:selectItem itemLabel="Selecione um usuário" itemValue="" noSelectionOption="true" />
                 <f:selectItems value="#{userMB.list}" />
             </p:selectOneMenu>

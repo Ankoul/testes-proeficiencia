@@ -23,11 +23,10 @@ public class ImageManager {
 	}
 
 
-	public static void writeOutputStream(OutputStream outputStream, String filename) throws IOException {
-		File file = new File(filename);
-		BufferedImage image = ImageIO.read(file);
-		ExtensionEnum extension = ExtensionEnum.fromBytes(FileUtils.toByteArray(file));
-		ImageIO.write(image, extension.getExtension(), outputStream);
+	public static void writeOutputStream(OutputStream outputStream, byte[] bytes) throws IOException {
+		BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(bytes));
+		ExtensionEnum extension = ExtensionEnum.fromBytes(bytes);
+		ImageIO.write(bufferedImage, extension.getExtension(), outputStream);
 	}
 
 }

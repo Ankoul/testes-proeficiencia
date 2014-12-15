@@ -12,7 +12,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Instrument implements Serializable, Cloneable {
+public class Instrument implements Serializable, Cloneable, EntityBean {
 
 	private static final long serialVersionUID = 7582414649100351188L;
 
@@ -85,6 +85,13 @@ public class Instrument implements Serializable, Cloneable {
 		clone.image = image;
 		clone.user = user;
 		return clone;
+	}
+	
+	protected void reset(){
+		this.id = null;
+		this.image = null;
+		this.name = "";
+		this.user = null;
 	}
 
 }

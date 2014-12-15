@@ -29,12 +29,17 @@ public class InstrumentMB extends Instrument {
 	}
 
 	public void toSave() {
-		instrumentDAO().save(clone());
+		instrumentDAO().save(this.clone());
+		this.reset();
 		onPostExecute();
 	}
 
 	private InstrumentDAO instrumentDAO() {
 		return DAOFactory.createDAO(InstrumentDAO.class);
+	}
+	
+	public void userChangeHandler() throws Exception {
+		System.out.println(getUser());
 	}
 
 	public void fileUploadHandler(FileUploadEvent event) throws Exception {
@@ -63,6 +68,12 @@ public class InstrumentMB extends Instrument {
 	private void onPostExecute() {
 		RequestContext.getCurrentInstance().update("tabView:formInstrument");
 		RequestContext.getCurrentInstance().update("tabView:tableInstrument");
+	}
+	
+	@Override
+	protected void reset(){
+		super.reset();
+		tempImageName = DEFAULT_IMAGE;
 	}
 
 }
