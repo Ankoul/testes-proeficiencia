@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -19,6 +20,7 @@ public class Instrument implements Serializable, Cloneable {
 	@GeneratedValue
 	private Long id;
 
+	@Lob
 	@Basic(fetch=FetchType.LAZY)
 	private byte[] image;
 	

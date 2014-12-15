@@ -37,7 +37,7 @@ public class User implements Cloneable, Serializable {
 	@Column(length = 14)
 	private String phone;
 	
-	@OneToMany(cascade = CascadeType.REMOVE)
+	@OneToMany(cascade = CascadeType.REMOVE, mappedBy = "user")
 	private List<Instrument> instruments;
 	
 	public User() {

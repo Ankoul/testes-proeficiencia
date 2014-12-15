@@ -34,10 +34,7 @@
 		<p:column>
 			<p:commandButton id="btnEdit" actionListener="#{userMB.toEdit(user.id)}" icon="ui-icon-pencil" />
 			<p:overlayPanel id="moviePanel" for="btnEdit" dynamic="true" style="width:600px">
-				<ui:include src="formUserTemplate.xhtml">
-					<ui:param name="formId" value="formUserUpdate" />
-					<ui:param name="btnSubmitUserFilename" value="../common/btnUpdateUser.xhtml" />
-				</ui:include>
+				<ui:include src="formEditUser.xhtml" />
 			</p:overlayPanel>
 		</p:column>
 		
