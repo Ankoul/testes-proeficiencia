@@ -2,8 +2,10 @@ package br.com.lelak.teste.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -17,9 +19,9 @@ public class Instrument implements Serializable, Cloneable {
 	@GeneratedValue
 	private Long id;
 
-	@Column(length = 400000)
-	private String image;
-
+	@Basic(fetch=FetchType.LAZY)
+	private byte[] image;
+	
 	@Column(length = 50)
 	private String name;
 	
@@ -29,7 +31,7 @@ public class Instrument implements Serializable, Cloneable {
 	public Instrument() {
 	}
 
-	public Instrument(Long id, String image, String name, User user) {
+	public Instrument(Long id, byte[] image, String name, User user) {
 		this.id = id;
 		this.image = image;
 		this.name = name;
@@ -44,11 +46,11 @@ public class Instrument implements Serializable, Cloneable {
 		this.id = id;
 	}
 
-	public String getImage() {
-		return image != null ? image : "images/default.png";
+	public byte[] getImage() {
+		return image;
 	}
 
-	public void setImage(String image) {
+	public void setImage(byte[] image) {
 		this.image = image;
 	}
 
@@ -82,4 +84,5 @@ public class Instrument implements Serializable, Cloneable {
 		clone.user = user;
 		return clone;
 	}
+
 }

@@ -1,50 +1,68 @@
 package br.com.lelak.teste.managedBean;
 
-import java.awt.image.BufferedImage;
-import java.io.InputStream;
+import java.io.File;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.imageio.ImageIO;
 
-import org.apache.commons.io.IOUtils;
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.UploadedFile;
-import org.primefaces.util.Base64;
 
 import br.com.lelak.teste.model.Instrument;
 import br.com.lelak.teste.persistence.DAOFactory;
 import br.com.lelak.teste.persistence.dao.InstrumentDAO;
+import br.com.lelak.teste.util.ExtensionEnum;
+import br.com.lelak.teste.util.FileUtils;
+import br.com.lelak.teste.util.ImageManager;
 
 @ManagedBean
 @ViewScoped
 public class InstrumentMB extends Instrument {
-	
-	private static final boolean LINE_SEPARATOR_FALSE = false;
+
 	private static final long serialVersionUID = 3896691647663920684L;
-	
-	public List<Instrument> getList(){
+	private static final String DEFAULT_IMAGE = "images" + File.separator + "default.png";
+	private String tempImageName = DEFAULT_IMAGE;
+
+	public List<Instrument> getList() {
 		return instrumentDAO().findAll();
 	}
-	
-	public void toSave(){
+
+	public void toSave() {
 		instrumentDAO().save(clone());
+		onPostExecute();
 	}
-	
-	private InstrumentDAO instrumentDAO(){
+
+	private InstrumentDAO instrumentDAO() {
 		return DAOFactory.createDAO(InstrumentDAO.class);
 	}
 
+	public void fileUploadHandler(FileUploadEvent event) throws Exception {
+		if(!tempImageName.equals(DEFAULT_IMAGE)){
+			FileUtils.deleteFromSource(tempImageName);
+		}
+		byte[] imageAsByte = FileUtils.toByteArray(event);
+		setImage(imageAsByte);
+
+		ExtensionEnum extension = ExtensionEnum.fromBytes(imageAsByte);
+		String imageName = extension.putExtensionIn("tempImage");
+		imageName = FileUtils.createRandomName(imageName);
+		ImageManager.writeTempImage(imageAsByte, imageName);
+		tempImageName = "temp" + File.separator + imageName;
+	}
 	
-	public void fileUploadHandler(FileUploadEvent event) throws Exception{
-		UploadedFile file = event.getFile();
-		
-		InputStream inputstream = file.getInputstream();
-		byte[] imageAsByte = IOUtils.toByteArray(inputstream);
-		BufferedImage bufferedImage = ImageIO.read(inputstream);
-		String imageAsString = Base64.encodeToString(imageAsByte, LINE_SEPARATOR_FALSE);
-		setImage(imageAsString);
+
+	public String getTempImageName() {
+		return tempImageName;
+	}
+
+	public void setTempImageName(String tempImageName) {
+		this.tempImageName = tempImageName;
+	}
+	
+	private void onPostExecute() {
+		RequestContext.getCurrentInstance().update("tabView:formInstrument");
+		RequestContext.getCurrentInstance().update("tabView:tableInstrument");
 	}
 
 }

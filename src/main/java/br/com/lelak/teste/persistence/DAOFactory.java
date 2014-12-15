@@ -20,7 +20,7 @@ abstract public class DAOFactory<R> {
 		}
     }
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public static <R> R  create(Class<R> entityBeanClass) throws ReflectiveOperationException  {
+	private static <R> R  create(Class<R> entityBeanClass) throws ReflectiveOperationException  {
 		String filenameDAO = entityBeanClass.getName() + "Impl"; 
 		filenameDAO = filenameDAO.replace(PACKAGE_DAO, PACKAGE_DAOImpl);
 		Class classDAO = Class.forName(filenameDAO);

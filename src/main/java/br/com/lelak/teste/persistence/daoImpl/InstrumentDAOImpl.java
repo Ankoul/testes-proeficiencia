@@ -15,6 +15,7 @@ class InstrumentDAOImpl extends DAOImpl<Instrument> implements InstrumentDAO {
 		super(Instrument.class, entityManager);
 	}
 	
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Instrument> listByUser(User user){
 		
@@ -26,6 +27,18 @@ class InstrumentDAOImpl extends DAOImpl<Instrument> implements InstrumentDAO {
 		query.setParameter("id", user.getId());
 		
 		return query.getResultList();
+	}
+	
+	@Override
+	public byte[] findImageById(Long id){
+		StringBuilder sqlBuilder = new StringBuilder();
+		sqlBuilder.append(" SELECT instrument.image FROM Instrument instrument ");
+		sqlBuilder.append(" WHERE instrument.id = :id ");
+		
+		Query query = entityManager.createQuery(sqlBuilder.toString());
+		query.setParameter("id", id);
+		
+		return (byte[]) query.getSingleResult();
 	}
 
 }

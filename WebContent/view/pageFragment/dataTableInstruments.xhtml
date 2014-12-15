@@ -18,7 +18,7 @@
 		<p:column>
 			<p:lightBox styleClass="imagebox" >
 				<h:outputLink value="#{instrument.image}" title="#{instrument.name}"> 
-					<h:graphicImage name="#{instrument.image}" style="height: 77px; width: 100px" />
+					<h:graphicImage value="ImageServlet?id=#{instrument.id}" style="height: 77px; width: 100px"/>
 				</h:outputLink>
 			</p:lightBox>
 		</p:column>

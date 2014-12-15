@@ -16,10 +16,9 @@
                 <f:selectItems value="#{userMB.list}" />
             </p:selectOneMenu>
 
-			<p:fileUpload id="image" fileUploadListener="#{instrumentMB.fileUploadHandler}" mode="advanced" auto="true" skinSimple="true" update="imageView"
+			<p:fileUpload id="imageUpload" fileUploadListener="#{instrumentMB.fileUploadHandler}" mode="advanced" auto="true" skinSimple="true" update="imageView" 
 			allowTypes="/(\.|\/)(gif|jpe?g|png)$/" label="Selecione uma imagem"/>
-			<p:graphicImage id="imageView" name="#{instrumentMB.image}" style="height: 77px; width: 100px"  />
-
+			<p:graphicImage id="imageView" name="#{instrumentMB.tempImageName}" style="height: 77px; width: 100px"/>
             <p:commandButton id="btnSaveInstrument" value="Salvar" actionListener="#{instrumentMB.toSave()}" type="submit" />
             <p:commandButton value="Limpar" type="reset" />
 		</p:panelGrid>
