@@ -127,12 +127,11 @@ public class User implements Cloneable, Serializable, EntityBean {
 	}
 	
 	public void reset(){
-		id = null;
-		name = "";
-		lastName = "";
-		email = "";
-		phone = "";
-		instruments = null;
+		this.id = null;
+		this.name = "";
+		this.lastName = "";
+		this.email = "";
+		this.phone = "";
 	}
-
+	
 }
