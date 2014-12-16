@@ -1,4 +1,4 @@
-package br.com.lelak.teste.model;
+package br.com.lelak.teste.entity;
 
 import java.io.Serializable;
 import java.util.List;
@@ -11,13 +11,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 import br.com.lelak.teste.exception.CloneNotSupportedRuntimeException;
 
 @ManagedBean
 @ViewScoped
 @Entity
-public class User implements Cloneable, Serializable, EntityBean {
+public class User implements Cloneable, Serializable {
 
 	private static final long serialVersionUID = -5430366449139440985L;
 	
@@ -25,16 +29,18 @@ public class User implements Cloneable, Serializable, EntityBean {
 	@GeneratedValue
 	private Long id;
 	
-	@Column(length = 50)
+	@NotEmpty
+	@Size(max = 50)
 	private String name;
 	
-	@Column(length = 50)
+	@NotEmpty
+	@Size(max = 50)
 	private String lastName;
 	
-	@Column(length = 50)
+	@Size(max = 50)
 	private String email;
 	
-	@Column(length = 14)
+	@Size(min = 13,max = 14)
 	private String phone;
 	
 	@OneToMany(cascade = CascadeType.REMOVE, mappedBy = "user")

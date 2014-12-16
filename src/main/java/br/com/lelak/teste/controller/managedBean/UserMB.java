@@ -1,4 +1,4 @@
-package br.com.lelak.teste.managedBean;
+package br.com.lelak.teste.controller.managedBean;
 
 import java.util.List;
 
@@ -8,8 +8,9 @@ import javax.faces.bean.RequestScoped;
 
 import org.primefaces.context.RequestContext;
 
-import br.com.lelak.teste.model.User;
+import br.com.lelak.teste.entity.User;
 import br.com.lelak.teste.persistence.dao.UserDAO;
+import br.com.lelak.teste.util.Validator;
 
 @ManagedBean
 @RequestScoped
@@ -35,6 +36,10 @@ public class UserMB extends AbstractManagedBean<User> {
 
 	@Override
 	public void toSave() {
+		if(Validator.isEmpty(userForm.getName())){
+			return;
+		}
+		
 		User clone = userForm.clone();
 		if (clone.getId() == null) {
 			saveUser(clone);

@@ -5,8 +5,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import br.com.lelak.teste.model.Instrument;
-import br.com.lelak.teste.model.User;
+import br.com.lelak.teste.entity.Instrument;
+import br.com.lelak.teste.entity.User;
 import br.com.lelak.teste.persistence.dao.InstrumentDAO;
 
 class InstrumentDAOImpl extends DAOImpl<Instrument> implements InstrumentDAO {

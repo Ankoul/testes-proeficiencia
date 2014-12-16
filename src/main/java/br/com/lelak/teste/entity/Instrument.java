@@ -1,4 +1,4 @@
-package br.com.lelak.teste.model;
+package br.com.lelak.teste.entity;
 
 import java.io.Serializable;
 
@@ -12,13 +12,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 import br.com.lelak.teste.exception.CloneNotSupportedRuntimeException;
 
 @ManagedBean
 @ViewScoped
 @Entity
-public class Instrument implements Serializable, Cloneable, EntityBean {
+public class Instrument implements Serializable, Cloneable {
 
 	private static final long serialVersionUID = 7582414649100351188L;
 
@@ -30,9 +34,11 @@ public class Instrument implements Serializable, Cloneable, EntityBean {
 	@Basic(fetch=FetchType.LAZY)
 	private byte[] image;
 	
-	@Column(length = 50)
+	@NotEmpty
+	@Size(max = 50)
 	private String name;
 	
+	@NotNull
 	@ManyToOne
 	private User user;
 	

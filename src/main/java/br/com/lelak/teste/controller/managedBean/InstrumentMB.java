@@ -1,4 +1,4 @@
-package br.com.lelak.teste.managedBean;
+package br.com.lelak.teste.controller.managedBean;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,8 +10,8 @@ import javax.faces.bean.ViewScoped;
 
 import org.primefaces.event.FileUploadEvent;
 
-import br.com.lelak.teste.model.Instrument;
-import br.com.lelak.teste.model.User;
+import br.com.lelak.teste.entity.Instrument;
+import br.com.lelak.teste.entity.User;
 import br.com.lelak.teste.util.ExtensionEnum;
 import br.com.lelak.teste.util.FileUtils;
 import br.com.lelak.teste.util.ImageManager;

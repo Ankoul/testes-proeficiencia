@@ -2,8 +2,8 @@ package br.com.lelak.teste.persistence.dao;
 
 import java.util.List;
 
-import br.com.lelak.teste.model.Instrument;
-import br.com.lelak.teste.model.User;
+import br.com.lelak.teste.entity.Instrument;
+import br.com.lelak.teste.entity.User;
 
 public interface InstrumentDAO extends DAO<Instrument> {
 

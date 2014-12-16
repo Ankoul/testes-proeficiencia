@@ -1,4 +1,4 @@
-package br.com.lelak.teste.filter;
+package br.com.lelak.teste.controller.filter;
 
 import java.io.IOException;
 
