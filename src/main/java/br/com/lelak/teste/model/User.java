@@ -6,11 +6,14 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import br.com.lelak.teste.exception.CloneNotSupportedRuntimeException;
 
@@ -25,16 +28,18 @@ public class User implements Cloneable, Serializable {
 	@GeneratedValue
 	private Long id;
 	
-	@Column(length = 50)
+	@NotEmpty
+	@Size(max = 50)
 	private String name;
 	
-	@Column(length = 50)
+	@Size(max = 50)
 	private String lastName;
 	
-	@Column(length = 50)
+	@NotEmpty
+	@Email
 	private String email;
 	
-	@Column(length = 14)
+	@Size(min = 12, max = 14)
 	private String phone;
 	
 	@OneToMany(cascade = CascadeType.REMOVE, mappedBy = "user")

@@ -10,7 +10,7 @@ import org.primefaces.context.RequestContext;
 
 import br.com.lelak.teste.model.User;
 import br.com.lelak.teste.persistence.dao.UserDAO;
-import br.com.lelak.teste.util.Validator;
+import br.com.lelak.teste.util.EntityValidator;
 
 @ManagedBean
 @RequestScoped
@@ -36,7 +36,7 @@ public class UserMB extends AbstractManagedBean<User> {
 
 	@Override
 	public void toSave() {
-		if(Validator.isEmpty(userForm.getName())){
+		if(!EntityValidator.isValid(userForm)){
 			return;
 		}
 		

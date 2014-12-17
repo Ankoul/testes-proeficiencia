@@ -5,13 +5,16 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.persistence.Basic;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 import br.com.lelak.teste.exception.CloneNotSupportedRuntimeException;
 
@@ -30,9 +33,11 @@ public class Instrument implements Serializable, Cloneable {
 	@Basic(fetch=FetchType.LAZY)
 	private byte[] image;
 	
-	@Column(length = 50)
+	@NotEmpty
+	@Size(max = 50)
 	private String name;
 	
+	@NotNull
 	@ManyToOne
 	private User user;
 	

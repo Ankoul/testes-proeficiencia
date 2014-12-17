@@ -12,6 +12,7 @@ import org.primefaces.event.FileUploadEvent;
 
 import br.com.lelak.teste.model.Instrument;
 import br.com.lelak.teste.model.User;
+import br.com.lelak.teste.util.EntityValidator;
 import br.com.lelak.teste.util.ExtensionEnum;
 import br.com.lelak.teste.util.FileUtils;
 import br.com.lelak.teste.util.ImageManager;
@@ -65,6 +66,9 @@ public class InstrumentMB extends AbstractManagedBean<Instrument> {
 		if(userId != null){
 			User user = userDAO().findById(userId);
 			clone.setUser(user);
+		}
+		if(!EntityValidator.isValid(clone)){
+			return;
 		}
 		
 		instrumentDAO().save(clone);
